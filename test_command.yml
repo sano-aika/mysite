@@ -1,0 +1,7 @@
+name: learn command
+steps:
+
+- id: test_id
+name: test_name
+run: echo "::set-output name=test::hoge"
+- run: echo "${{ steps.test_id.outputs.test }}"
