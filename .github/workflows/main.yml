@@ -1,11 +1,13 @@
-name: learn command
+name: Example Workflow
 on:
-  workflow_dispatch:
-jobs:                                  #各ジョブの詳細を記載する
-  hoge:
-  　runs-on: [self-hosted]
-　　steps:
-　　　- id: test_id
-        name: test_name
-        run: echo "::set-output name=test::hoge"
-　　　- run: echo "${{ steps.test_id.outputs.test }}"
+  push:
+    branches: [ main ]
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Output
+        run: echo "::set-output name=myOutput::Hello, world^^!"
+        id: myStep
+      - name: Use Output
+        run: echo "${{ steps.myStep.outputs.myOutput }}"
